@@ -1,3 +1,4 @@
+# Opens book, to be handled in future functions
 def open_book(title: str) -> str:
     try:
         with open(f"books/{title}.txt", "r") as book:
