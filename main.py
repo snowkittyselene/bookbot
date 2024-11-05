@@ -8,9 +8,17 @@ def open_book(title: str) -> str:
         book.close()
 
 
+# Count words in a book
+def count_words(contents: str) -> int:
+    # Break book into words
+    words = contents.split()
+    return len(words)
+
+
 def main():
     frankenstein = open_book("frankenstein")
-    print(frankenstein)
+    frankenstein_word_count = count_words(frankenstein)
+    print(f"There are {frankenstein_word_count} words in the book.")
 
 
 main()
