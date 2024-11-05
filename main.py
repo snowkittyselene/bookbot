@@ -16,10 +16,23 @@ def count_words(contents: str) -> int:
     return len(words)
 
 
+# Counts the occurrence of each character in the book, counting lowercase
+def count_characters(contents: str) -> dict:
+    characters = {}
+    for char in contents.lower():
+        if char not in characters:
+            characters[char] = 1
+        else:
+            characters[char] += 1
+    return characters
+
+
 def main():
     frankenstein = open_book("frankenstein")
     frankenstein_word_count = count_words(frankenstein)
     print(f"There are {frankenstein_word_count} words in the book.")
+    character_count = count_characters(frankenstein)
+    print(character_count)
 
 
 main()
