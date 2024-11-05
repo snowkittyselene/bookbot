@@ -27,12 +27,39 @@ def count_characters(contents: str) -> dict:
     return characters
 
 
+# Sorts the character frequency and returns only alphabetic chars
+def filter_characters(frequencies: dict) -> dict:
+    letters_only = {}
+    for char in frequencies:
+        if char.isalpha():
+            letters_only[char] = frequencies[char]
+    return dict(
+        sorted(letters_only.items(), key=lambda letter: letter[1], reverse=True)
+    )
+
+
+# Creates and prints report of the book
+def create_report(title: str) -> None:
+    # Open book first, then get stats
+    book = open_book(title)
+    word_count = count_words(book)
+    character_count = count_characters(book)
+    sorted_characters = filter_characters(character_count)
+
+    # Assemble report
+    print(f"--- Begin report of {title.title()} ---")
+    print("")
+    print(f"There were {word_count} words found in the document.")
+    for character in sorted_characters:
+        print(
+            f"The {character} character was found {sorted_characters[character]} times"
+        )
+    print("")
+    print("--- End report ---")
+
+
 def main():
-    frankenstein = open_book("frankenstein")
-    frankenstein_word_count = count_words(frankenstein)
-    print(f"There are {frankenstein_word_count} words in the book.")
-    character_count = count_characters(frankenstein)
-    print(character_count)
+    create_report("frankenstein")
 
 
 main()
